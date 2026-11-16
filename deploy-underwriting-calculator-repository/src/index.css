@@ -1,0 +1,316 @@
+@import "./components/arc/foundation.css";
+@import "tailwindcss";
+
+/* Arc pickers inherit the suite's existing light canvas and amber accent. */
+/* The cards have backdrop-filter stacking contexts; open pickers must rise above neighboring cards. */
+.surface:has(.cfo-picker button[aria-expanded="true"]) {
+  z-index: 30;
+}
+.cfo-picker {
+  --foreground: #16181C;
+  --text-secondary: #5F646B;
+  --text-muted: #70757C;
+  --surface: #FFFFFF;
+  --surface-raised: #FFFFFF;
+  --surface-muted: #FBF7E9;
+  --border: rgba(22, 24, 28, 0.15);
+  --border-subtle: rgba(22, 24, 28, 0.07);
+  --border-strong: #F0A93B;
+  --accent: #F4C74B;
+  --accent-strong: #F0A93B;
+  --accent-foreground: #16181C;
+  --radius-control: 22px;
+  --radius-panel: 22px;
+  --control-height-md: 44px;
+  --font-body: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --text-sm: 13.5px;
+  --text-xs: 11px;
+  --space-2: 6px;
+  --focus-outline: #F0A93B;
+  /* Arc's spring token is 580ms; UI motion here stays under 300ms. */
+  --duration-spring: 260ms;
+  --shadow-floating: 0 20px 48px -12px rgba(22, 24, 28, 0.24), 0 3px 10px rgba(22, 24, 28, 0.045);
+  align-self: start;
+  font-family: var(--font-body);
+}
+.cfo-picker > label,
+.cfo-picker > span:first-child {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.cfo-picker [role="dialog"],
+.cfo-picker [role="listbox"] {
+  z-index: 80;
+  max-width: calc(100vw - 32px);
+}
+.cfo-picker [role="listbox"] {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(22, 24, 28, 0.2) transparent;
+}
+.cfo-picker [role="listbox"] [aria-selected="true"] {
+  font-weight: 500;
+}
+.cfo-picker:has(button[aria-invalid="true"]) {
+  --border: #FA6C5D;
+  --border-strong: #FA6C5D;
+}
+.cfo-picker:has(button[aria-invalid="true"]) > span:last-child {
+  color: #96291D;
+}
+@media (min-width: 768px) {
+  .cfo-picker:nth-child(3) [role="dialog"] {
+    left: auto;
+    right: 0;
+  }
+}
+@media print {
+  .cfo-picker [role="dialog"],
+  .cfo-picker [role="listbox"] {
+    display: none;
+  }
+}
+
+
+/* =========================================================================
+   Eeshaan Koltey DS v2.4 Design System Tokens
+   Source of truth: https://github.com/kolteyeeshaan-code/eeshaankoltey-IST-design-system-1
+   ========================================================================= */
+
+@theme {
+  --font-sans: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Ink / grayscale */
+  --color-ink: #16181C;
+  --color-ink-2: #5F646B;
+  --color-muted: #9EA3AA;
+  --color-faint: #C4C8CE;
+  --color-hair: rgba(22, 24, 28, 0.07);
+
+  /* Canvas + surfaces */
+  --color-canvas: #ECEFF4;
+  --color-cream: #FBF7E9;
+  --color-amber: #F4C74B;
+  --color-amber-deep: #F0A93B;
+  --color-coral: #FA6C5D;
+  --color-peri: #DDE4F8;
+  --color-mint: #CFE3D6;
+
+  /* Radius ladder */
+  --radius-card: 24px;
+  --radius-modal: 28px;
+  --radius-field: 22px;
+}
+
+:root {
+  /* Motion tokens. One strong ease-out for enters/exits and feedback; ease-in-out
+     only for on-screen movement. No ease-in anywhere in the UI. */
+  --ek-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ek-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --color-canvas: #ECEFF4;
+  --color-cream: #FBF7E9;
+  --color-ink: #16181C;
+  --color-ink-2: #5F646B;
+  --color-muted: #9EA3AA;
+  --color-amber: #F4C74B;
+  --color-coral: #FA6C5D;
+  color-scheme: light;
+}
+
+html, body {
+  font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background-color: #ECEFF4;
+  color: #16181C;
+  overflow-x: clip;
+}
+
+/* Eeshaan Koltey Warm Grey Canvas Backdrop */
+.eeshaan-koltey-canvas {
+  background:
+    radial-gradient(1100px 600px at 15% -10%, rgba(244, 199, 75, 0.18), transparent 60%),
+    radial-gradient(900px 500px at 95% 5%, rgba(201, 213, 242, 0.35), transparent 55%),
+    linear-gradient(180deg, #ECEFF4 0%, #E6EAF0 100%);
+  min-height: 100vh;
+}
+
+/* Surface styles from Eeshaan Koltey design board */
+.surface {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 2px rgba(22, 24, 28, 0.035), 0 16px 40px -22px rgba(22, 24, 28, 0.16);
+}
+
+.surface-cream {
+  background: #FBF7E9;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 2px rgba(22, 24, 28, 0.035), 0 16px 40px -22px rgba(22, 24, 28, 0.16);
+}
+
+.surface-flat {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(22, 24, 28, 0.07);
+}
+
+/* Eeshaan Koltey button press effect */
+.press {
+  transition: transform 120ms var(--ek-ease-out), background-color 150ms ease, opacity 150ms ease;
+  user-select: none;
+}
+.press:active {
+  transform: scale(0.965);
+}
+
+/* Eeshaan Koltey form input */
+.eeshaan-koltey-field {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(22, 24, 28, 0.15);
+  border-radius: 22px;
+  color: #16181C;
+  transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
+}
+.eeshaan-koltey-field:focus-within {
+  background: #ffffff;
+  border-color: #F0A93B;
+  box-shadow: 0 0 0 3px rgba(240, 169, 59, 0.22);
+}
+
+/* Dark glass card surface for Methodology Modal TOC */
+.glass-card {
+  background: #0B1220;
+  border: 1px solid rgba(246, 206, 82, 0.22);
+  box-shadow: 0 12px 32px -16px rgba(11, 18, 32, 0.55);
+}
+
+/* =========================================================================
+   Eeshaan Koltey amber slider — Arc single-thumb control mapped onto the
+   suite's own accent tokens so the animated slider matches the old native
+   range pixel-for-pixel (18px amber thumb, white ring, soft drop shadow).
+   ========================================================================= */
+.ek-slider.ek-slider {
+  /* Geometry: same 18px thumb and 6px rail the native control used. */
+  --slider-thumb: 18px;
+  --slider-track: 6px;
+  /* The native input was only as tall as its rail; keep that footprint so no
+     card changes height. The thumb's own ::after still gives a ~40px target. */
+  --control-height-md: 22px;
+
+  /* Accent: amber fill and thumb on the charcoal-tinted rail. */
+  --control-track: rgba(22, 24, 28, 0.1);
+  --control-fill: #F4C74B;
+  --control-thumb: #F4C74B;
+  --control-thumb-shadow: inset 0 0 0 2px #FFFFFF, 0 2px 6px rgba(22, 24, 28, 0.28);
+
+  /* Charcoal value bubble, amber focus ring. */
+  --foreground: #16181C;
+  --background: #FFFFFF;
+  --text-sm: 13px;
+  --focus-outline: #F0A93B;
+
+  touch-action: pan-y;
+}
+
+/* Treasury and micro-field sliders sat on a slightly heavier rail. */
+.ek-slider-thick.ek-slider-thick {
+  --slider-track: 8px;
+  --control-track: rgba(22, 24, 28, 0.12);
+}
+
+/* Every caller prints its own label, unit and live value, so Arc's header is
+   pulled out of the layout but left in the a11y tree to name the thumb. */
+.ek-slider.ek-slider > :first-child {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Matches the previous disabled:opacity-30 on the CFO exits slider. */
+.ek-slider.ek-slider[data-disabled] {
+  opacity: 0.3;
+}
+
+/* Animations
+   Enter-only CSS keyframes for surfaces that mount occasionally. Nothing here
+   plays on a keyboard action or on data changes.
+   - anim-pop:      centred surfaces (modals). Starts at 0.97, never 0.
+   - anim-fade:     in-flow content (workspace switch, notices). Opacity only.
+   - anim-backdrop: modal scrim.
+   - anim-toast:    enters and leaves through the same bottom edge. */
+@keyframes ek-pop { from { opacity: 0; transform: scale(0.97); } }
+@keyframes ek-fade { from { opacity: 0; } }
+@keyframes ek-fade-out { to { opacity: 0; } }
+@keyframes ek-toast-in { from { opacity: 0; transform: translateY(8px); } }
+@keyframes ek-toast-out { to { opacity: 0; transform: translateY(6px); } }
+
+.anim-pop { animation: ek-pop 200ms var(--ek-ease-out); }
+.anim-fade { animation: ek-fade 140ms var(--ek-ease-out); }
+.anim-backdrop { animation: ek-fade 160ms var(--ek-ease-out); }
+.anim-toast { animation: ek-toast-in 200ms var(--ek-ease-out); }
+.anim-toast-out { animation: ek-toast-out 160ms var(--ek-ease-out) forwards; }
+
+/* Workspace switch indicator: moving on screen, so ease-in-out. A CSS transition
+   (not a keyframe) so a second click retargets from the current position. */
+.ek-pill {
+  transition: transform 220ms var(--ek-ease-in-out), opacity 150ms var(--ek-ease-out);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Gentler, not zero: keep opacity, drop movement. */
+  .anim-pop, .anim-toast { animation-name: ek-fade; }
+  .anim-toast-out { animation-name: ek-fade-out; }
+  .ek-pill { transition-property: opacity; }
+  .press:active { transform: none; }
+}
+
+/* Hide scrollbars cleanly on touch tab strips */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===================== Workspace 4 · Underwriting Report presentation */
+/* Ruled institutional texture behind the report masthead */
+.report-ruled {
+  background-image:
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0px, rgba(255, 255, 255, 0.045) 1px, transparent 1px, transparent 26px),
+    radial-gradient(720px 260px at 88% -20%, rgba(244, 199, 75, 0.2), transparent 62%),
+    radial-gradient(560px 240px at 4% 120%, rgba(174, 190, 233, 0.16), transparent 60%);
+}
+
+@media print {
+  .eeshaan-koltey-canvas { background: #FFFFFF; }
+  header.sticky, nav[aria-label="Workspace switcher"], nav[aria-label="Report sections"], footer { display: none; }
+  .report-masthead { box-shadow: none; }
+  .report-ruled { background-image: none; }
+  section[id^="report-section-"] { break-inside: avoid; box-shadow: none; }
+  tr { break-inside: avoid; }
+}
+
+/* Custom scrollbars */
+.scroll-thin::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: rgba(22, 24, 28, 0.16);
+  border-radius: 9999px;
+}
+.scroll-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(22, 24, 28, 0.32);
+}
